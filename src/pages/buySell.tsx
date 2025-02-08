@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronRight, Filter, Plus, Search, ShoppingBag, Pen, Bell, Flower } from 'lucide-react';
+import { ChevronRight, Search, ShoppingBag, Pen, Bell, Flower } from 'lucide-react';
 export default function BuySellMarketplace({ onBack }: { onBack: () => void }) {
     const [activeTab, setActiveTab] = useState<'buy' | 'sell'>('buy');
     const [searchQuery, setSearchQuery] = useState('');

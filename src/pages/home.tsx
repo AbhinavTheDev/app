@@ -30,7 +30,7 @@ export default function HomePage() {
           className="relative pt-12 pb-6 px-6 bg-gradient-to-br from-green-500 to-green-600 rounded-b-3xl shadow-lg"
           style={{
             backgroundImage: `url('https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=600')`,
-            backgroundBlend: 'soft-light',
+            backgroundBlendMode: 'soft-light',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backdropFilter: 'blur(50px)',

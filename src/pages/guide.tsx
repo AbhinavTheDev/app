@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Droplets, Wind, House as HouseIcon, Users,Languages, Scan,ChevronRight, MessageCircle } from 'lucide-react';
+import { Droplets, Wind, House as HouseIcon, Users, Scan, MessageCircle } from 'lucide-react';
 import SupportFeedback from './support';
 export default function WasteSegregationGuide({ onBack }: { onBack: () => void }) {
     // const [selectedLanguage, setSelectedLanguage] = useState('English');
