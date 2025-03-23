@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { MessageSquare, Send, ArrowDown } from "lucide-react";
+import { Send, ArrowDown } from "lucide-react";
 import axios from "axios";
 
 interface Message {
