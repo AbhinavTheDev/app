@@ -13,7 +13,7 @@ export default function WasteChatbot({ onBack }: { onBack: () => void }) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 0,
-      text: "Hi! I'm your waste management assistant. Ask me anything about recycling, composting, or waste disposal.",
+      text: "Hi! I'm RegenBot. Ask me anything about recycling, composting, or waste disposal.",
       isUser: false,
       timestamp: new Date()
     }
@@ -27,7 +27,7 @@ export default function WasteChatbot({ onBack }: { onBack: () => void }) {
   // Backend API URL
   const API_URL = import.meta.env.VITE_API_BASE_URL || "/api";
 
-  // Add this at the top of your component (before useEffect hooks)
+  // Greeting detection
   const isGreeting = (text: string): boolean => {
     const greetingPatterns = [
       /\b(hi|hello|hey|greetings|howdy)\b/i,
@@ -64,7 +64,6 @@ export default function WasteChatbot({ onBack }: { onBack: () => void }) {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -155,8 +154,15 @@ export default function WasteChatbot({ onBack }: { onBack: () => void }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
-      <div className="max-w-md mx-auto min-h-screen flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white relative">
+      {/* Background image - the cartoon with reduced opacity */}
+      <div 
+        className="absolute inset-15 bg-no-repeat bg-contain bg-center pointer-events-none opacity-10"
+        style={{ backgroundImage: `url('/cartoon.png')` }}
+        aria-hidden="true"
+      ></div>
+      
+      <div className="max-w-md mx-auto min-h-screen flex flex-col relative z-10">
         {/* Header */}
         <div className="bg-green-600 p-6 rounded-b-3xl shadow-lg">
           <button
@@ -165,13 +171,21 @@ export default function WasteChatbot({ onBack }: { onBack: () => void }) {
           >
             ← Back
           </button>
-          <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-            <MessageSquare className="w-6 h-6" />
-            Waste Management Assistant
-          </h2>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/50">
+              <img 
+                src="/cartoon.png" 
+                alt="RegenBot" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <h2 className="text-2xl font-bold text-white">
+              RegenBot : Waste Management Assistant
+            </h2>
+          </div>
         </div>
 
-        {/* Chat Container */}
+        {/* Chat Container with transparent background */}
         <div 
           ref={chatContainerRef}
           className="flex-1 p-4 overflow-y-auto"
@@ -187,7 +201,7 @@ export default function WasteChatbot({ onBack }: { onBack: () => void }) {
                   className={`max-w-[85%] rounded-lg p-3 ${
                     message.isUser
                       ? 'bg-green-600 text-white rounded-br-none'
-                      : 'bg-gray-100 text-gray-800 rounded-bl-none'
+                      : 'bg-white/90 backdrop-blur-sm text-gray-800 rounded-bl-none border border-gray-200'
                   }`}
                 >
                   {message.isUser ? (
@@ -203,7 +217,7 @@ export default function WasteChatbot({ onBack }: { onBack: () => void }) {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-gray-100 rounded-lg p-3 rounded-bl-none max-w-[85%]">
+                <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3 rounded-bl-none max-w-[85%] border border-gray-200">
                   <div className="flex space-x-2">
                     <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '0s' }}></div>
                     <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -227,27 +241,27 @@ export default function WasteChatbot({ onBack }: { onBack: () => void }) {
         )}
 
         {/* Input Area */}
-        <div className="bg-white border-t border-gray-200 p-2">
+        <div className="bg-white/80 backdrop-blur-sm border-t border-gray-200 p-3">
           <form onSubmit={handleSubmit} className="flex items-center gap-2">
             <input
               type="text"
               value={inputMessage}
               onChange={e => setInputMessage(e.target.value)}
               placeholder="Ask about waste management..."
-              className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="flex-1 border border-gray-300 bg-white/90 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
               disabled={isLoading}
             />
             <button
               type="submit"
               disabled={isLoading || !inputMessage.trim()}
-              className="bg-green-600 text-white rounded-full p-2 hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+              className="bg-green-600 text-white rounded-full p-3 hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
-              <Send size={20} />
+              <Send size={18} />
             </button>
           </form>
-          {/* <div className="mt-1 text-xs text-gray-500 text-center">
-            Try asking questions like "How do I recycle batteries?" or "Is styrofoam recyclable?"
-          </div> */}
+          <div className="mt-1 text-xs text-gray-500 text-center">
+            Try asking about recycling specific items or composting tips
+          </div>
         </div>
       </div>
     </div>

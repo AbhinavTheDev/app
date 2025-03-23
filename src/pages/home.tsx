@@ -5,7 +5,6 @@ import {
   Users,
   Truck,
   Trophy,
-  Pickaxe,
   ShoppingBag,
   MessageCircle,
   Leaf,
@@ -19,8 +18,8 @@ export default function HomePage() {
     { title: 'Waste Segregation Guide', route: '/waste-guide', icon: <Users className="w-6 h-6" /> },
     { title: 'Rewards & Incentives', route: '/rewards', icon: <Trophy className="w-6 h-6" /> },
     { title: 'Waste Collection Schedule', route: '/schedule', icon: <Truck className="w-6 h-6" /> },
-    { title: 'Composting Guide', route: '/compost', icon: <Pickaxe className="w-6 h-6" /> },
     { title: 'Buy/Sell', route: '/buy-sell', icon: <ShoppingBag className="w-6 h-6" /> },
+    { title: 'RegenBot', route: '/chatbot', icon: <img src="/cartoon.png" alt="AI Assistant" className="w-full h-full object-cover rounded-full border-2" /> },
   ]
 
   return (
@@ -67,7 +66,7 @@ export default function HomePage() {
         </div>
 
         {/* Chatbot Floating Button - Adjusted for mobile-first and app width */}
-        <div className="max-w-md mx-auto relative">
+        {/* <div className="max-w-md mx-auto relative">
           <div 
             className="absolute -bottom-5 right-4 z-20 cursor-pointer transition-transform hover:scale-105"
             onClick={() => navigate('/chatbot')}
@@ -86,7 +85,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="fixed flex items-center justify-center bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white via-white to-transparent">
           <button
