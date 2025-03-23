@@ -25,7 +25,7 @@ export default function WasteChatbot({ onBack }: { onBack: () => void }) {
   const [showScrollButton, setShowScrollButton] = useState(false);
 
   // Backend API URL
-  const API_URL = "/api";
+  const API_URL = import.meta.env.VITE_API_BASE_URL || "/api";
 
   // Add this at the top of your component (before useEffect hooks)
   const isGreeting = (text: string): boolean => {

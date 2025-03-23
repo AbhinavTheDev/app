@@ -10,7 +10,7 @@ export default function ScanWaste({ onBack }: { onBack: () => void }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Backend API URL
-  const API_URL = "/api";
+  const API_URL = import.meta.env.VITE_API_BASE_URL || "/api";
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
