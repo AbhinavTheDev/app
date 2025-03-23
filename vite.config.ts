@@ -6,14 +6,5 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-  ],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'https://appserver-l2v2.onrender.com',
-        changeOrigin: true,
-        secure: true,
-      }
-    }
-  }
+  ]
 })
