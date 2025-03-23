@@ -5,7 +5,7 @@ import {
   Users,
   Truck,
   Trophy,
-  Upload,
+  Pickaxe,
   ShoppingBag,
   MessageCircle,
   Leaf,
@@ -19,7 +19,7 @@ export default function HomePage() {
     { title: 'Waste Segregation Guide', route: '/waste-guide', icon: <Users className="w-6 h-6" /> },
     { title: 'Rewards & Incentives', route: '/rewards', icon: <Trophy className="w-6 h-6" /> },
     { title: 'Waste Collection Schedule', route: '/schedule', icon: <Truck className="w-6 h-6" /> },
-    { title: 'Upload Composting Proof', route: '/uploadProof', icon: <Upload className="w-6 h-6" /> },
+    { title: 'Composting Guide', route: '/compost', icon: <Pickaxe className="w-6 h-6" /> },
     { title: 'Buy/Sell', route: '/buy-sell', icon: <ShoppingBag className="w-6 h-6" /> },
   ]
 
@@ -42,7 +42,9 @@ export default function HomePage() {
               <span className="text-green-300">Earth</span>
               <Leaf className="w-6 h-6 text-green-300" />
             </h1>
-            <button className="mt-4 w-full bg-white/90 backdrop-blur-sm rounded-lg py-3 px-4 flex items-center justify-center gap-2 text-green-700 font-medium shadow-lg hover:bg-white transition-colors">
+            <button
+            onClick={() => navigate('/scan')}
+            className="mt-4 w-full bg-white/90 backdrop-blur-sm rounded-lg py-3 px-4 flex items-center justify-center gap-2 text-green-700 font-medium shadow-lg hover:bg-white transition-colors">
               <QrCode className="w-5 h-5" />
               Scan Waste
             </button>
@@ -62,6 +64,28 @@ export default function HomePage() {
               <span className="text-sm font-medium text-green-800">{section.title}</span>
             </button>
           ))}
+        </div>
+
+        {/* Chatbot Floating Button - Adjusted for mobile-first and app width */}
+        <div className="max-w-md mx-auto relative">
+          <div 
+            className="absolute -bottom-5 right-4 z-20 cursor-pointer transition-transform hover:scale-105"
+            onClick={() => navigate('/chatbot')}
+          >
+            <div className="relative">
+              <div className="w-14 h-14 rounded-full overflow-hidden shadow-lg border-2 border-green-300">
+                <img 
+                  src="/cartoon.png" 
+                  alt="AI Assistant" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 bg-white text-xs font-medium text-green-600 px-2 py-0.5 rounded-full shadow-sm border border-green-200">
+                Chat
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="fixed flex items-center justify-center bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white via-white to-transparent">

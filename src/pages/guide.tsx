@@ -1,26 +1,21 @@
-import { Droplets, Wind, House as HouseIcon, Users, Scan, MessageCircle } from 'lucide-react';
+import { Recycle, Users, Scan, MessageCircle, BanIcon} from 'lucide-react';
+import { useNavigate } from 'react-router-dom'
 import SupportFeedback from './support';
 export default function WasteSegregationGuide({ onBack }: { onBack: () => void }) {
     // const [selectedLanguage, setSelectedLanguage] = useState('English');
-    
+    const navigate = useNavigate();
     const wasteCategories = [
       {
-        title: 'Wet Waste',
-        icon: <Droplets className="w-6 h-6" />,
-        color: 'bg-blue-500',
-        items: ['Food waste', 'Vegetable peels', 'Tea bags', 'Coffee grounds', 'Meat and bones']
+        title: 'Recyclable Waste',
+        icon: <Recycle className="w-6 h-6" />,
+        color: 'bg-green-500',
+        items: ['Food waste', 'Paper', 'Glass', 'Metal', 'Cardboards']
       },
       {
-        title: 'Dry Waste',
-        icon: <Wind className="w-6 h-6" />,
-        color: 'bg-yellow-500',
-        items: ['Paper', 'Cardboard', 'Plastic', 'Glass', 'Metal']
-      },
-      {
-        title: 'Domestic Hazardous',
-        icon: <HouseIcon className="w-6 h-6" />,
+        title: 'Non-Recyclable Waste',
+        icon: <BanIcon className="w-6 h-6" />,
         color: 'bg-red-500',
-        items: ['Batteries', 'Cleaning agents', 'Medicines', 'Electronic waste', 'Paint']
+        items: ['Plastic', 'Thermocol', 'Poly Bags', 'Paint', 'Plastic Bottles']
       }
     ];
   
@@ -40,11 +35,12 @@ export default function WasteSegregationGuide({ onBack }: { onBack: () => void }
               <Users className="w-6 h-6" />
               Waste Segregation Guide
             </h2>
-            <button className="w-full bg-white/10 text-white rounded-lg mt-3 p-2 flex items-center justify-center gap-2 hover:bg-green-700 transition-colors">
+            <button
+            onClick={() => navigate('/compost')}
+            className="w-full bg-white/10 text-white rounded-lg mt-3 p-2 flex items-center justify-center gap-2 hover:bg-green-700 transition-colors">
               <Scan className="w-5 h-5" />
-              Scan Waste to Identify Category
+              Check Category of Your Waste
             </button>
-           
           </div>
   
           <div className="p-4 space-y-4">
